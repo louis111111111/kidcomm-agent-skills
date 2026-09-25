@@ -4,7 +4,7 @@
 
 ---
 
-## 一、总策略一句话
+## 一、总策略
 
 **选一个具体垂类场景，用 DGX Spark GB10 本地跑通“多模态感知 → Agent 决策 → Skill 执行”的闭环，至少设计 2–3 个协同 skill，补齐 Verified Skills 的治理产物（skill-card / evals / benchmark / 签名），并把 StepFun 模型作为 LLM/VLM backbone。**
 
@@ -165,15 +165,15 @@ project/
 
 ---
 
-## 五、一句话收尾
+## 五、总结
 
-**评委想看到的不是"我用了很多技术"，而是"我用 DGX Spark + NVIDIA Agent Skills + StepFun 模型，把一个有真实痛点的垂类场景，做成了可验证、可复用、可演示的技能资产。"**
+**评委想看到的不是"用了很多技术"，而是"用 DGX Spark + NVIDIA Agent Skills + StepFun 模型，把一个有真实痛点的垂类场景，做成了可验证、可复用、可演示的技能资产。"**
 
 ---
 
 ## 六、往届获奖项目分析（参赛参考）
 
-> 你参加的是**第三届**（Agent Skills 开发挑战赛，2026-10 苏州金鸡湖）。下面是前两届（中国区）的冠亚季军，以及它们透露的评审偏好。
+> 下面是前两届（中国区）的冠亚季军，以及它们透露的评审偏好。
 
 ### 第一届 · NVIDIA DGX Spark Sky Hackathon（全栈 AI 开发大赛，超千名开发者）
 主题偏向"企业级 AI 落地、系统化工程能力"。
@@ -200,7 +200,7 @@ project/
 
 ---
 
-## 七、机器人方向专属建议（第三届 · 你们团队）
+## 七、机器人方向专属建议
 
 ### 本届主题对机器人赛道的直接利好
 - 第三届主题 = **"Agent Skills 驱动的 Agent 应用"**，作品方向文案里**明确列出"具身智能"**——机器人正是具身智能的主场，方向完全对口，不用硬蹭。
@@ -247,31 +247,3 @@ project/
 **不要只做"一台会动的机器人"，而要做"一台能力被封装成 Agent Skills、能被任意兼容 Agent 用自然语言驱动、在 DGX Spark 上离线可靠运行、且懂得拒绝危险指令的具身智能体"。** 这正好把本届主题（Agent Skills × 具身智能）、往届机器人季军经验（E-MARS）和评分标准（治理 + 工程化 + 落地）全部吃满。
 
 ---
-
-## 八、技术选型 Q&A（Hermes / Agent Skills / DGX Spark）
-
-### Q1. 能不能用 Hermes？它比 OpenClaw 更安全吗？队友用 OpenClaw 会难交流吗？
-- **能用**：Hermes（Nous Research 开源，MIT）和 OpenClaw 都遵循同一套开放 Agent Skills 标准（`SKILL.md` / agentskills.io），skill 互相兼容；Hermes 甚至内置 `hermes claw migrate` 一键导入 OpenClaw 的 skill / 记忆 / 配置。
-- **"更安全"是误区**：skill 的安全性不取决于用哪个客户端，而取决于两层——① **能力准入层**：只装 verified / signed 的 skill（NVIDIA-verified、OMS 签名、skill-card）；② **运行时护栏**：OpenClaw 配 NemoClaw 沙箱，Hermes 用 Docker 终端后端做沙箱 + 装包时扫描。两客户端都做扫描；OpenClaw 的 ClawHub 早期（2026-02）曾出现约 17% 恶意 skill，现已接 VirusTotal + ClawScan + NVIDIA 协作筛查。结论：**选哪个都行，关键是只装可信源 skill + 开护栏**。
-- **队友交流不困难**：因为 `SKILL.md` 是开放标准，你用 Hermes 写的 skill 队友在 OpenClaw 上能直接跑（反之亦然）。真正的协作单元是"skill 目录"，可放 git 共享；唯一摩擦是各 harness 的加载路径 / 网关 / 记忆不同，不影响 skill 逻辑本身。
-- **实操建议**：为减少摩擦、对齐官方训练营（何琨 workshop 用 OpenClaw），**建议全队统一用 OpenClaw**；若你个人想用 Hermes，保持 skill 用开放格式、走 git 共享即可，队友仍能用。
-
-### Q2. Agent Skill 能做什么、有哪些运用场景？
-- **本质**：Skill = 一份可分发的"任务操作手册"（`SKILL.md` + `references` + `scripts`），把专家知识 / 工具用法 / 标准工作流固化下来，让 Agent 理解需求 → 执行 → 交付。
-- **核心能力**：
-  - 封装工具 / API 正确用法（避免参数幻觉）
-  - 窄触发强路由 + 渐进式披露（常驻 ~100 token，命中才展开，省 token 防误触发）
-  - 前置提问（缺参数先问，不猜）
-  - 安全边界内嵌（不打印明文 token、不改 checked-in 配置、优先缓存）
-  - 可组合（多 skill 串联成工作流）
-  - 可治理（skill-card / 签名 / evals 含负向用例 / benchmark）
-  - 跨客户端分发（Claude Code / Codex / Cursor / Hermes / OpenClaw 通用）
-- **运用场景（NVIDIA 41 条产品线节选）**：RAG 企业知识库、cuOpt 物流 / 量化金融、VSS 视频检索摘要、DeepStream 工业视觉、TAO 视觉定位、NeMo / Dynamo 训练推理、Omniverse / Physical AI 机器人仿真。
-- **对你们机器人团队的落点**：感知 Skill（grounding / 检测，复用 TAO）、规划 Skill（自然语言 → 机器人计划）、控制 / 导航 Skill（运动学 / API 封装）、安全 Skill（negative triggers 拒危险指令）、多 Agent 各调一 Skill 编排。
-- **风险提示（刘春晖）**：Skill 也是新的供应链攻击面，治理五件套不可省。
-
-### Q3. DGX Spark 本质上是什么？
-- **本质**：一台**桌面级"个人 AI 超级计算机"**（compact personal AI supercomputer），不是云服务器、也不是普通 PC。
-- **硬件**：GB10 Grace Blackwell 超级芯片 = 20 核 Arm Grace CPU（10×Cortex-X925 + 10×Cortex-A725）+ Blackwell GPU，NVLink 互连；**128GB 统一一致性内存**（CPU / GPU 共享，关键特性）；最高 ~1 PFLOP FP4；支持本地跑最高 **2000 亿参数**模型；150×150×50.5mm、1.2kg、240W。
-- **为什么重要**：统一内存让 70B / 120B / 200B 模型能**完全本地、离线、低延迟、私有**运行，无需复杂分片——这正是本届"让 Agent 住进你的机器"的前提。对机器人：端侧 / 现场推理、断网可跑。
-- **赛事角色**：本届指定的本地算力节点，你们在上面部署模型 + skills。
