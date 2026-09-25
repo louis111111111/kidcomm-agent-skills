@@ -66,11 +66,4 @@ cd kidcomm-safety-guardrail && python evals/run_eval.py   # 离线 5/5
 cd ../kidcomm-elicit && python evals/run_eval.py          # 接模型后出通过率；无端点优雅跳过
 ```
 
-## 怎么交给组长 / 提交比赛
-整个 `kidcomm-skills/` 文件夹打包发出即可。组长：在 DGX Spark 起本地 OpenAI 兼容服务 → 设 `KIDCOMM_*` 环境变量 → 把两个 Skill 目录放进 Agent 的 skills 目录（Hermes/OpenClaw 都认），Agent 按 `SKILL.md` 自动调用。
 
-## 安全边界
-- 数据全程本地，禁止云上传（对云端儿童产品的核心卖点）
-- 不替孩子下结论、不诊断、不说教
-- 给孩子的内容必经护栏 + 适龄过滤
-- 表达权在孩子，理解权在家长
