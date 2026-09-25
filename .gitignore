@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# Env / secrets
+.env
+*.env
+
+# Generated reports / signatures (produced by eval/signing pipeline)
+validation_report.json
+report.json
+skill.oms.sig
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+
+# WorkBuddy internal memory / metadata (private, not a deliverable)
+.workbuddy/

@@ -1,0 +1,42 @@
+{
+  "skill": "kidcomm-elicit",
+  "version": "0.2.0",
+  "cases": [
+    {
+      "id": "plan-01",
+      "mode": "plan",
+      "input": {"question": "问问孩子为什么最近不想去幼儿园", "age": 6},
+      "expect": {
+        "must_fields": ["modality", "warm_up", "facilitation", "on_screen_visual"],
+        "non_leading": true
+      }
+    },
+    {
+      "id": "plan-02",
+      "mode": "plan",
+      "input": {"question": "想知道孩子今天最高兴的事", "age": 9},
+      "expect": {
+        "must_fields": ["modality", "warm_up", "facilitation"],
+        "non_leading": true
+      }
+    },
+    {
+      "id": "sum-01",
+      "mode": "summarize",
+      "input": {"child": "我不想去了，因为小朋友不跟我玩", "question": "为什么不想去幼儿园"},
+      "expect": {
+        "must_fields": ["summary", "child_quotes", "member_check_question", "confidence"],
+        "no_diagnosis": true
+      }
+    },
+    {
+      "id": "sum-02",
+      "mode": "summarize",
+      "input": {"child": "还行吧", "question": "今天最高兴的事"},
+      "expect": {
+        "must_fields": ["summary", "member_check_question"],
+        "no_diagnosis": true
+      }
+    }
+  ]
+}
