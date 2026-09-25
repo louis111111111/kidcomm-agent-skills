@@ -1,9 +1,7 @@
-# kidcomm — 亲子引导表达技能族（第三届 NVIDIA DGX Spark 黑客松）
-
-> 给"不会写代码"的你的使用手册。照着做就行。
+# kidcomm — 亲子引导表达技能族
 
 ## 这是什么
-一套 **Agent Skill**（符合 Anthropic 开源规范 / NVIDIA 本届标准）。解决一个真实痛点：
+一套 **Agent Skill**（符合 Anthropic 开源规范）。解决一个真实痛点：
 **家长想了解孩子对某件事的看法，但直接问孩子听不懂、说不清。** 家长把问题输入手机，机器人/agent 用**经学术验证的儿童访谈方法**（讲故事 / 角色扮演 / 分步提问 / 画图），通过**语音 + 屏幕画面**引导孩子准确表达，再把孩子的意思以家长能懂的方式回传——并且**让孩子确认**"是不是这个意思"。
 
 两个 Skill 串成一条流水线：
@@ -11,7 +9,7 @@
 家长输入"孩子难懂的问题"
       │
       ▼
-[0] kidcomm-safety-guardrail   ← 安全闸门（必过，离线规则，不需要模型）
+[0] kidcomm-safety-guardrail   ← 安全闸门
       │
       ▼
 [1] kidcomm-elicit            ← 主 Skill：转译问题→引导表达→成员核查→回传家长
@@ -30,12 +28,12 @@ kidcomm-skills/
 ```
 每个 Skill：`SKILL.md`（Agent 读）、`skill-card.md`（治理卡）、`scripts/`（可运行代码）、`evals/`（评测）。
 
-## 第一步：装依赖（一次）
+## 第一步：装环境
 ```bash
 pip install requests
 ```
 
-## 第二步：本地怎么测（没有 DGX 也能测）
+## 第二步：本地怎么测
 护栏不需要模型，直接测：
 ```bash
 cd kidcomm-safety-guardrail
@@ -62,7 +60,7 @@ python scripts/elicit.py --mode plan --question "问问孩子为什么不想去�
 python scripts/elicit.py --mode summarize --child "我不想去了，因为小朋友不跟我玩" --question "为什么不想去幼儿园"
 ```
 
-## 第四步：跑评测（评审要看）
+## 第四步：跑评测
 ```bash
 cd kidcomm-safety-guardrail && python evals/run_eval.py   # 离线 5/5
 cd ../kidcomm-elicit && python evals/run_eval.py          # 接模型后出通过率；无端点优雅跳过
@@ -70,12 +68,6 @@ cd ../kidcomm-elicit && python evals/run_eval.py          # 接模型后出通�
 
 ## 怎么交给组长 / 提交比赛
 整个 `kidcomm-skills/` 文件夹打包发出即可。组长：在 DGX Spark 起本地 OpenAI 兼容服务 → 设 `KIDCOMM_*` 环境变量 → 把两个 Skill 目录放进 Agent 的 skills 目录（Hermes/OpenClaw 都认），Agent 按 `SKILL.md` 自动调用。
-
-## 评分对应
-- **实用性·创新(25%)**：真实沟通痛点 + "用验证方法引导孩子表达"新角度
-- **技术深度**：多模态交付 + 自适应非诱导提问 + 成员核查闭环
-- **安全/治理**：确定性护栏 + 五件套（编目/扫描/评测/签名/文档）
-- **可验证**：每个 Skill 带 evals 数据集 + 运行器
 
 ## 安全边界
 - 数据全程本地，禁止云上传（对云端儿童产品的核心卖点）
