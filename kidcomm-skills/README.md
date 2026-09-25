@@ -39,7 +39,7 @@ pip install requests
 cd kidcomm-safety-guardrail
 python scripts/screen.py --text "我爸爸电话是13800138000"   # 输出 action: block
 ```
-解码/引导需要模型端点。开发期设成任意 OpenAI 兼容 API；组长在 DGX 上换成**本地地址**，代码一行不改：
+解码/引导需要模型端点：
 ```bash
 export KIDCOMM_BASE_URL="https://你的端点/v1"
 export KIDCOMM_MODEL="模型名"
