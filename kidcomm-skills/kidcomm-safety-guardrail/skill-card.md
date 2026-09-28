@@ -22,3 +22,13 @@
 - 只拦截、不生成
 - 严重命中（隐私/诱导）必须阻断，不可绕过
 - 离线可用，不依赖网络
+
+## 分发与责任（NVIDIA Verified Skills 规范字段）
+| 字段 | 内容 |
+|------|------|
+| **Owner** | 2026 NVIDIA DGX Spark 黑客松 · kidcomm 队（Louis Beaton 等） |
+| **License** | MIT（本仓库代码）；接入的模型权重依各自许可 |
+| **Deployment Geography** | 本地优先（DGX Spark / 任意 OpenAI 兼容端点），无云依赖、无数据出境 |
+| **Requirements** | Python 3.10+；可选 `KIDCOMM_GUARDRAIL_MODEL` 启用模型复核 |
+| **Dependencies** | 无第三方包（纯标准库，可独立审计） |
+| **Risks & Mitigations** | 规则无法穷尽语义变体 → 红队持续对抗（44 条，误杀率 0%）+ 可选模型复核；误杀 → 双模式 + 负向用例评测约束 |

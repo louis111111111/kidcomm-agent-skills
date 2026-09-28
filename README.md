@@ -4,7 +4,7 @@
 > 核心卖点：**本地离线，孩子声音最敏感数据不出户**（DGX Spark）。
 
 ## 这个仓库是什么
-- `kidcomm-skills/` —— 两个符合 Agent Skills 规范的 Skill：`kidcomm-safety-guardrail`（安全护栏，离线可跑）+ `kidcomm-elicit`（亲子引导表达，主）。
+- `kidcomm-skills/` —— 四个符合 Agent Skills 规范的 Skill：`kidcomm-safety-guardrail`（安全护栏，离线可跑）、`kidcomm-elicit`（亲子引导表达，主）、`kidcomm-robot-frontend`（儿童自然语言→机器人可执行指令，混合架构、全本地免费）、`kidcomm-robot-designer`（儿童捏脸/捏性格→技术组可交付设计稿，含语料映射）。
 - 设计/评分/验证文档（根目录）：
   - `亲子引导表达Skill设计.md` —— 设计方案
   - `评分标准映射.md` —— 6 项评分标准逐条对齐（含诚实的"不适用"标注）
@@ -24,7 +24,7 @@ cd ../kidcomm-elicit && python scripts/elicit.py --mode plan --question "问问�
 ```
 
 ## 验证（可验证性维度）
-- 自动化：`evals/`（护栏 5/5 离线通过）
+- 自动化：`evals/`（护栏红队对抗评测 44/44 通过，修复前 11/44）
 - 真人 pilot：`pilot-protocol.md`（Wizard-of-Oz，无需 DGX）
 - 自对弈仿真：`kidcomm-skills/validate.py`（**由组长在 DGX 执行**，输出量化报告）
 

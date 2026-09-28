@@ -1,0 +1,37 @@
+{
+  "_comment": "kidcomm-robot-designer 的权威语料/映射文件（单一真相源）。design.py 直接加载本文件；在线原型 designer-demo.html 内嵌了同一份的镜像用于独立运行。修改映射请改这里，并保持 demo 内嵌镜像同步。",
+
+  "shape": {
+    "圆": "round", "方": "square", "三角": "triangle", "椭圆": "oval",
+    "星形": "star", "爱心": "heart"
+  },
+
+  "color": {
+    "红": "red", "蓝": "blue", "绿": "green", "黄": "yellow", "粉": "pink",
+    "紫": "purple", "橙": "orange", "黑": "black", "白": "white",
+    "银": "silver", "金": "gold"
+  },
+
+  "size": { "小": "small", "中": "medium", "大": "large" },
+
+  "parts": ["身体", "头", "翅膀", "尾巴", "触角", "爪子", "手臂"],
+
+  "abstract_to_concrete": {
+    "可爱": { "shape": "round", "color_primary": "pink", "note": "圆圆的脸、粉粉的颜色、大大的眼睛" },
+    "萌":   { "shape": "round", "color_primary": "pink", "note": "圆圆的、粉粉的、萌萌的" },
+    "酷":   { "color_primary": "black", "note": "黑黑的、酷酷的" },
+    "帅":   { "color_primary": "blue", "note": "蓝蓝的、帅帅的" },
+    "凶":   { "color_primary": "red", "note": "红红的、凶凶的" },
+    "软":   { "texture": "毛茸茸", "shape": "round", "note": "毛茸茸的、圆圆的" },
+    "威风": { "size": "large", "parts": ["翅膀"], "note": "大大的、带翅膀" }
+  },
+
+  "personality": [
+    { "k": "happy",  "n": "开心", "face": "弯弯笑眼 + 大笑",   "acts": ["蹦跳", "转圈", "挥手"],            "tone": "轻快" },
+    { "k": "angry",  "n": "愤怒", "face": "圆睁眼 + 锯齿嘴/抿紧", "acts": ["跺脚", "挥拳", "喷气"],          "tone": "低沉大声" },
+    { "k": "timid",  "n": "胆小", "face": "大睁眼 + 小嘴",       "acts": ["躲身后", "缩头", "小碎步"],        "tone": "细声" },
+    { "k": "brave",  "n": "勇敢", "face": "坚定眼神 + 微笑",     "acts": ["大步前进", "张开双臂", "保护姿态"],  "tone": "稳" },
+    { "k": "gentle", "n": "温柔", "face": "柔和眼 + 浅笑",       "acts": ["轻拍", "拥抱", "慢慢走"],          "tone": "轻柔" },
+    { "k": "naughty","n": "调皮", "face": "眨眼 + 坏笑",         "acts": ["做鬼脸", "偷偷动", "蹦跳"],        "tone": "俏皮" }
+  ]
+}

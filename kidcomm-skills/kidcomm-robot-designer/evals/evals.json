@@ -1,0 +1,37 @@
+[
+  {
+    "id": "d01_guide_abstract",
+    "kind": "guide",
+    "text": "我想要一个可爱的",
+    "expect_shape": "round",
+    "expect_color": "pink",
+    "expect_missing": ["size"]
+  },
+  {
+    "id": "d02_guide_concrete",
+    "kind": "guide",
+    "text": "绿色的方机器人",
+    "expect_shape": "square",
+    "expect_color": "green",
+    "expect_missing": ["size"]
+  },
+  {
+    "id": "d03_compile_valid",
+    "kind": "compile",
+    "spec": {"appearance": {"shape": "square", "color_primary": "green", "size": "medium", "parts": ["翅膀", "尾巴"]}, "personality": "brave", "source": "text"},
+    "expect_type": "brave",
+    "expect_shape": "square"
+  },
+  {
+    "id": "d04_compile_missing",
+    "kind": "compile",
+    "spec": {"appearance": {"shape": "round"}, "personality": "happy"},
+    "expect_error": true
+  },
+  {
+    "id": "d05_compile_bad_pers",
+    "kind": "compile",
+    "spec": {"appearance": {"shape": "round", "color_primary": "red", "size": "small"}, "personality": "sad"},
+    "expect_error": true
+  }
+]

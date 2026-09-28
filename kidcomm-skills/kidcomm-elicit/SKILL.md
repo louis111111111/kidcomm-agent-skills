@@ -13,6 +13,8 @@ description: >
   Do NOT fabricate the child's meaning; always member-check with the child; never diagnose
   or preach; never upload data (process locally on DGX Spark); never suggest a "right"
   answer to the child; keep all content age-appropriate and non-leading.
+  Not for: children under 5 or over 10, clinical/diagnostic/mental-health
+  assessment, or topics needing a professional (medical/legal/financial) answer.
 ---
 
 # 亲子引导表达 (Kid Elicitation Skill)

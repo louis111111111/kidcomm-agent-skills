@@ -9,6 +9,8 @@ description: >
   age-appropriateness. Deterministic rules run first (no model needed); an optional
   model-based check runs only when KIDCOMM_GUARDRAIL_MODEL is set.
   Do NOT use this as a content generator; it only screens and flags.
+  Not for: adult-only content moderation, or replacing a general-purpose safety
+  filter outside the kidcomm family.
 ---
 
 # 适龄安全护栏 (Safety Guardrail)

@@ -20,3 +20,13 @@
 - 不诊断、不说教
 - 本地离线，禁止云上传
 - 必经适龄护栏；表达权在孩子，理解权在家长
+
+## 分发与责任（NVIDIA Verified Skills 规范字段）
+| 字段 | 内容 |
+|------|------|
+| **Owner** | 2026 NVIDIA DGX Spark 黑客松 · kidcomm 队（Louis Beaton 等） |
+| **License** | MIT（本仓库代码）；接入的模型权重依各自许可 |
+| **Deployment Geography** | 本地优先（DGX Spark / 任意 OpenAI 兼容端点），无云依赖、无数据出境 |
+| **Requirements** | Python 3.10+；`KIDCOMM_BASE_URL`/`KIDCOMM_MODEL`/`KIDCOMM_API_KEY` 指向 OpenAI 兼容端点（DGX 本地大模型或开发期任意端点） |
+| **Dependencies** | 仅 `requests`（模型调用，惰性导入，无端点时优雅跳过）；前置 `kidcomm-safety-guardrail` |
+| **Risks & Mitigations** | 模型可能幻觉/诱导 → 确定性护栏前置 + 成员核查（member-check）；数据隐私 → 全程本地、禁云上传 |
